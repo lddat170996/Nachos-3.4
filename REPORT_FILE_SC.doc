@@ -1,0 +1,10 @@
+3/4/2016
+14CLC
+LY DIEN DAT - 1453006
+NGUYEN HOANG BAO - 1453002
+THIEU VUONG MINH DAO - 1453005
+TRAN MINH TAM- 1453041
+//-----------BAO CAO VE SYSTEM CALL XU LI FILE ------------//
+File Nachos nay da hoan thanh cac system call xu li file bao gom: Read, Write, Open, Close, Seek file. Giao vien co the su dung chuong trinh trong "./test/writefile" de kiem tra tinh dung dan cua cac systemcall nhom da viet.
+//-----------------Ve van de da chuong------------------//
+Nhom da viet duoc 1 so system call ve da chuong,Nhung van con loi ve van de xung dot vung nho.

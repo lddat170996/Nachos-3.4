@@ -1,0 +1,28 @@
+#include "syscall.h"
+#include "copyright.h"
+
+void stoi(char buf[],int length,int numArr[])
+{
+	int i=0,j=0;
+	int tmpnum =0;
+	int neg_flag = 1;
+	for(i;i<length;i++)
+	{
+		if(buf[i] >= '0' && buf[i] <='9')
+		{
+			tmpnum = tmpnum*10 + (buf[i]&0XF);
+		}
+		if(buf[i] == ' ' || buf[i] == '\n')
+		{
+			numArr[j] = tmpnum;
+			j++;
+			tmpnum = 0;
+			
+		}
+		else
+		{
+			return ;
+		}
+	}
+	numArr[j] = '\0';
+}

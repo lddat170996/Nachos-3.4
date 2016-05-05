@@ -1,0 +1,10 @@
+#ifndef MYSC_H
+#define SYSC_H
+
+#include "../userprog/syscall.h"
+#include "system.h"
+#define MaxFileLength 32
+char* User2System(int virtAddr,int maxfilelen);
+int   System2User(int virtAddr,int len,char* buffer);
+int SC_Create_func();
+#endif

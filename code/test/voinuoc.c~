@@ -1,0 +1,107 @@
+#include "syscall.h"
+#include "copyright.h"
+#include "hamphu.h"
+void itoa(int n,char *buf)
+{
+
+	char tmp[10];
+	int i =0,j=0,mod =0;
+	if(n == 0)
+	{
+		buf[0] = '0';
+		buf[1] = '\0';
+		return;
+	}
+	while(n>0)
+	{
+		mod = n%10;
+		tmp[i] = mod + 48;
+		n = n/10;
+		i++;
+	}
+	i--;
+	while(i >=0)
+	{
+		buf[j]= tmp[i];
+		j++;
+		i--;
+	}
+	buf[j] = '\0';
+	return;
+}
+int stoi(char buf[],int length,int numArr[])
+{
+	int i=0,j=0;
+	int tmpnum =0;
+	for(i;i<length;i++)
+	{
+		if(buf[i] >= '0' && buf[i] <='9')
+		{
+			tmpnum = tmpnum*10 + (buf[i]&0XF);
+		}
+		if(buf[i] == ' ' || buf[i] == '\0')
+		{
+			if(tmpnum > 0)
+			{numArr[j] = tmpnum;
+			j++;
+			tmpnum = 0;
+			}
+			
+		}
+	}
+	return j;
+}
+
+void phanphoi(int numArr[],int n,int result[])
+{
+	int i =0;
+	int p1 =0,p2 =0;
+	while(i<n)
+	{
+		if(p1 <=  p2)
+		{
+			if(numArr[i] != 0)
+			{p1 += numArr[i];
+			result[i] = 1;
+			}
+		}
+		else
+		{
+			if(numArr[i] != 0)
+			{p2 += numArr[i];
+			result[i] = 2;
+			}
+		}
+		i++;
+	}
+}
+
+int main()
+{
+	OpenFileId Id,Id2;
+	int i =0,n_num =0,s =0;
+	int p1 =0, p2 =0;
+	char buf[100],Obuf[100];
+	int numArr[100], result[100];
+	Id = Open("info.txt",1);
+	Id2 = Open("output.txt",0);
+	Read(buf,100,Id);
+	n_num=stoi(buf,100,numArr);
+	s = Read(Obuf,100,Id2);
+
+	phanphoi(numArr,n_num,result);
+	i=0;
+	while(i <n_num)
+	{	if(result[i] != 0)
+		{
+		itoa(result[i],buf);
+		Write(buf,1,Id2);
+		Write(" ",1,Id2);
+		}
+		i++;
+	}
+	Write("\n",1,Id2);
+	Exit(0);
+	Close(Id2);
+	Close(Id);
+}
